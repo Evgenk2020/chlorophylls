@@ -22,19 +22,7 @@ private:
     cl_a_allowance _all;
 
 public:
-    virtual float get_chloro(ch_data dat) const
-    {
-        auto mass_n_correct = [dat]()
-        { return (float)(100 / dat.mass_of_probe); };
-
-        auto solvent_correct = [dat]()
-        { return (float)(dat.vol_filtrate / 1000); };
-
-        auto solv_index = [dat]()
-        { return (float)(dat.vol_photo_probe + dat.vol_photo_alch); };
-
-        return (float)(mass_n_correct() * solvent_correct() * _all.get_chloro(dat) * solv_index());
-    }
+    virtual float get_chloro(ch_data dat) const { return (float)((dat.mass_of_probe * dat.vol_filtrate / 10) * (dat.vol_photo_probe + dat.vol_photo_alch) * _all.get_chloro(dat)); }
 };
 
 class final_b : public chloro_data
@@ -43,19 +31,7 @@ private:
     cl_b_allowance _all;
 
 public:
-    virtual float get_chloro(ch_data dat) const
-    {
-        auto mass_n_correct = [dat]()
-        { return (float)(100 / dat.mass_of_probe); };
-
-        auto solvent_correct = [dat]()
-        { return (float)(dat.vol_filtrate / 1000); };
-
-        auto solv_index = [dat]()
-        { return (float)(dat.vol_photo_probe + dat.vol_photo_alch); };
-
-        return (float)(mass_n_correct() * solvent_correct() * _all.get_chloro(dat) * solv_index());
-    }
+    virtual float get_chloro(ch_data dat) const { return (float)((dat.mass_of_probe * dat.vol_filtrate / 10) * (dat.vol_photo_probe + dat.vol_photo_alch) * _all.get_chloro(dat)); }
 };
 
 class cl_sum : public chloro_data
