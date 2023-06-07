@@ -7,13 +7,13 @@ chlor_allowance::~chlor_allowance() {}
 class cl_a_allowance : public chloro_data
 {
 public:
-    virtual float get_chloro(ch_data dat) const { return (float)(13.7 * dat.d665 - 5.76 * dat.d649); }
+    virtual float get_chloro(ch_data dat) const;
 };
 
 class cl_b_allowance : public chloro_data
 {
 public:
-    virtual float get_chloro(ch_data dat) const { return (float)(25.8 * dat.d649 - 7.6 * dat.d665); }
+    virtual float get_chloro(ch_data dat) const;
 };
 
 class final_a : public chloro_data
@@ -22,7 +22,7 @@ private:
     cl_a_allowance _all;
 
 public:
-    virtual float get_chloro(ch_data dat) const { return (float)((dat.mass_of_probe * dat.vol_filtrate / 10) * (dat.vol_photo_probe + dat.vol_photo_alch) * _all.get_chloro(dat)); }
+    virtual float get_chloro(ch_data dat) const;
 };
 
 class final_b : public chloro_data
@@ -31,7 +31,7 @@ private:
     cl_b_allowance _all;
 
 public:
-    virtual float get_chloro(ch_data dat) const { return (float)((dat.mass_of_probe * dat.vol_filtrate / 10) * (dat.vol_photo_probe + dat.vol_photo_alch) * _all.get_chloro(dat)); }
+    virtual float get_chloro(ch_data dat) const;
 };
 
 class cl_sum : public chloro_data
@@ -41,8 +41,10 @@ private:
     final_b fin_b;
 
 public:
-    virtual float get_chloro(ch_data dat) const { return (float)(fin_a.get_chloro(dat) + fin_b.get_chloro(dat)); }
+    virtual float get_chloro(ch_data dat) const;
 };
+
+//-------------------------------------------------------
 
 std::unique_ptr<chloro_data> chlor_allowance::chloro_data_get(chlor_data_type types)
 {
@@ -79,3 +81,9 @@ std::unique_ptr<chloro_data> chlor_allowance::chloro_data_get(chlor_data_type ty
     }
     }
 }
+
+float cl_a_allowance::get_chloro(ch_data dat) const { return (float)(13.7 * dat.d665 - 5.76 * dat.d649); }
+float cl_b_allowance::get_chloro(ch_data dat) const { return (float)(25.8 * dat.d649 - 7.6 * dat.d665); }
+float final_a::get_chloro(ch_data dat) const { return (float)((dat.mass_of_probe * dat.vol_filtrate / 10) * (dat.vol_photo_probe + dat.vol_photo_alch) * _all.get_chloro(dat)); }
+float final_b::get_chloro(ch_data dat) const { return (float)((dat.mass_of_probe * dat.vol_filtrate / 10) * (dat.vol_photo_probe + dat.vol_photo_alch) * _all.get_chloro(dat)); }
+float cl_sum::get_chloro(ch_data dat) const { return (float)(fin_a.get_chloro(dat) + fin_b.get_chloro(dat)); }
