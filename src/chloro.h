@@ -5,7 +5,12 @@
 
 struct ch_data
 {
-    float mass_of_probe, vol_filtrate, vol_photo_probe, vol_photo_alch, d665, d649;
+    float mass_of_probe;
+    float vol_filtrate;
+    float vol_photo_probe;
+    float vol_photo_alch;
+    float d665;
+    float d649;
 };
 
 class chloro_data

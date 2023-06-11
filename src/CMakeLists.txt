@@ -10,7 +10,7 @@ SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_BUILD_RPATH}/bin)
 
 project(chloro LANGUAGES CXX)
 
-add_library(chlo STATIC chloro.h chloro.cpp)
+add_library(chlo STATIC chloro.h chloro.cpp output.h output.cpp)
 
 add_executable(chloro main.cpp)
 target_link_libraries(chloro chlo)
