@@ -12,7 +12,7 @@ chloro -d [mass g] [filtrate ml] [photoprobe ml] [solvent ml] [D 665] [D 649]
 
 Using `-df` key you may write data to `*.csv` file for the next importing to LibreOffice Calc, MS Excell or Google Tables
 
-![Google table data import](/img/screen_02.png)
+![Google table data import](/img/screen.png)
 
 For more convenience you may add path to the application into `.bashrc` file
 
