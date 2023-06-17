@@ -72,3 +72,19 @@ chloro -df 1.5 25 3 1 0.984 0.625
 exec $SHELL
 
 ```
+
+This program runs with `uk_UA.utf8` locale. It can be changed in `output.cpp`
+
+```C++
+
+std::locale m_loc("uk_UA.utf8");
+
+```
+
+To see locale list use
+
+```SH
+
+locale -a
+
+```
