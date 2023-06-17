@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <locale>
 #include "output.h"
 
 general_info::~general_info() {}
@@ -53,24 +54,29 @@ void screen_info::see_info(ch_data *dat)
 void file_info::see_info(ch_data *dat)
 {
     std::ofstream writer("chlor-dada.csv", std::ios::app);
-    const std::string coma = ",";
+
+    const char coma = ',';
+    const char quo = '\"';
+
+    std::locale m_loc("uk_UA.utf8");
+    writer.imbue(m_loc);
 
     chlor_allowance allow;
 
     writer << "Концентрация хлорофилла А:" << coma
-           << allow.chloro_data_get(allow.chloro_a_allowance)->get_chloro(*dat) << coma << "мг/мл" << std::endl;
+           << quo << allow.chloro_data_get(allow.chloro_a_allowance)->get_chloro(*dat) << quo << coma << quo << "мг/мл" << quo << std::endl;
 
     writer << "Концентрация хлорофилла B:" << coma
-           << allow.chloro_data_get(allow.chloro_b_allowance)->get_chloro(*dat) << coma << "мг/мл" << std::endl;
+           << quo << allow.chloro_data_get(allow.chloro_b_allowance)->get_chloro(*dat) << quo << coma << quo << "мг/мл" << quo << std::endl;
 
     writer << "Содержание хлорофилла А:" << coma
-           << allow.chloro_data_get(allow.chloro_a_mg)->get_chloro(*dat) << coma << "мг/100 г" << std::endl;
+           << quo << allow.chloro_data_get(allow.chloro_a_mg)->get_chloro(*dat) << quo << coma << quo << "мг/100 г" << quo << std::endl;
 
     writer << "Содержание хлорофилла B:" << coma
-           << allow.chloro_data_get(allow.chloro_b_mg)->get_chloro(*dat) << coma << "мг/100 г" << std::endl;
+           << quo << allow.chloro_data_get(allow.chloro_b_mg)->get_chloro(*dat) << quo << coma << quo << "мг/100 г" << quo << std::endl;
 
     writer << "Сумма хлорофиллов А + B:" << coma
-           << allow.chloro_data_get(allow.chloro_sum)->get_chloro(*dat) << coma << "мг/100 г" << std::endl;
+           << quo << allow.chloro_data_get(allow.chloro_sum)->get_chloro(*dat) << quo << coma << quo << "мг/100 г" << quo << std::endl;
     writer << "" << std::endl;
 
     std::cout << "Данные добавлены в файл chlor-dada.csv" << std::endl;
