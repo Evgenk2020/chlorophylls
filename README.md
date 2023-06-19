@@ -14,6 +14,8 @@ Using `-df` key you may write data to `*.csv` file for the next importing to Lib
 
 ![Google table data import](/img/screen.png)
 
+Use `build.sh` and `run.sh` from the `src` folder to compile and run the application
+
 For more convenience you may add path to the application into `.bashrc` file
 
 ```
