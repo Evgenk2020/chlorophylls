@@ -6,7 +6,7 @@ Run it with specified keys
 
 ```
   
-chloro -d [mass g] [filtrate ml] [photoprobe ml] [solvent ml] [D 665] [D 649]
+chloro -d [mass_g] [filtrate_ml] [photoprobe_ml] [solvent_ml] [D_665] [D_649]
 
 ```
 
